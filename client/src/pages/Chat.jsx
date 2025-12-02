@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from "react";
-import { Button } from "@/components/ui/button";
+import { Button } from "../components/ui/button";
 import { Send, Paperclip, Image as ImageIcon } from "lucide-react";
 import { useLanguage } from "../context/LanguageContext";
 
@@ -118,8 +118,8 @@ export default function Chat() {
                             >
                                 <div
                                     className={`max-w-xl px-6 py-4 rounded-2xl shadow-sm ${message.sender === "user"
-                                            ? "bg-primary text-white rounded-br-none"
-                                            : "bg-white text-primary border border-gray-200 rounded-bl-none"
+                                        ? "bg-primary text-white rounded-br-none"
+                                        : "bg-white text-primary border border-gray-200 rounded-bl-none"
                                         }`}
                                 >
                                     <p className="text-sm sm:text-base leading-relaxed whitespace-pre-wrap">

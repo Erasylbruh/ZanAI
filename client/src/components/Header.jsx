@@ -3,8 +3,8 @@ import { Link } from 'react-router-dom';
 import { useLanguage } from '../context/LanguageContext';
 import { Button } from './ui/button';
 
-const Header = ({ language, setLanguage }) => {
-    const { t } = useLanguage();
+const Header = () => {
+    const { t, language, setLanguage } = useLanguage();
 
     return (
         <header className="fixed top-0 left-0 right-0 z-50 bg-white/80 backdrop-blur-md border-b border-gray-100">
@@ -39,8 +39,8 @@ const Header = ({ language, setLanguage }) => {
                                     key={lang}
                                     onClick={() => setLanguage(lang.toLowerCase())}
                                     className={`px-3 py-1.5 text-xs font-medium rounded-md transition-all ${language.toUpperCase() === lang
-                                            ? 'bg-white text-primary shadow-sm'
-                                            : 'text-gray-500 hover:text-gray-700'
+                                        ? 'bg-white text-primary shadow-sm'
+                                        : 'text-gray-500 hover:text-gray-700'
                                         }`}
                                 >
                                     {lang}
