@@ -166,9 +166,9 @@ export default function Chat() {
                                     }
                                 }}
                                 placeholder={language === 'kz' ? "Сұрағыңызды жазыңыз..." : "Опишите вашу проблему..."}
-                                className="flex-1 px-4 py-3 bg-gray-50 dark:bg-slate-800 border border-gray-300 dark:border-gray-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent resize-none text-sm sm:text-base text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 transition-colors"
+                                className="chat-input flex-1 px-4 py-3 bg-gray-50 dark:bg-slate-800 border border-gray-300 dark:border-gray-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent resize-none text-sm sm:text-base text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 transition-colors"
                                 rows={1}
-                                style={{ minHeight: '50px', maxHeight: '150px' }}
+                                style={{ minHeight: '50px', maxHeight: '144px' }}
                                 disabled={isLoading}
                             />
 

@@ -109,7 +109,7 @@ const Home = () => {
             </section>
 
             {/* Features Section */}
-            <section className="py-20 bg-gradient-to-b from-gray-50 to-white dark:from-slate-900 dark:to-slate-950 px-4 sm:px-6 lg:px-8 transition-colors duration-300">
+            <section className="py-20 bg-gray-50 dark:bg-slate-950 px-4 sm:px-6 lg:px-8 transition-colors duration-300">
                 <div className="max-w-6xl mx-auto">
                     <div className="text-center mb-16">
                         <h2 className="text-3xl font-bold text-primary mb-4">
