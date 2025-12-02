@@ -104,11 +104,11 @@ export default function Chat() {
     };
 
     return (
-        <div className="flex flex-col h-screen bg-white pt-16 sm:pt-20">
+        <div className="flex flex-col h-screen bg-white dark:bg-slate-900 pt-16 sm:pt-20 transition-colors duration-300">
             {/* Main Chat Container */}
             <div className="flex-1 flex flex-col overflow-hidden">
                 {/* Messages Area */}
-                <div className="flex-1 overflow-y-auto bg-gradient-to-b from-white to-gray-50 px-4 sm:px-6 lg:px-8 py-8">
+                <div className="flex-1 overflow-y-auto bg-gradient-to-b from-white to-gray-50 dark:from-slate-900 dark:to-slate-950 px-4 sm:px-6 lg:px-8 py-8 transition-colors duration-300">
                     <div className="max-w-3xl mx-auto space-y-6">
                         {messages.map((message) => (
                             <div
@@ -119,13 +119,13 @@ export default function Chat() {
                                 <div
                                     className={`max-w-xl px-6 py-4 rounded-2xl shadow-sm ${message.sender === "user"
                                         ? "bg-primary text-white rounded-br-none"
-                                        : "bg-white text-primary border border-gray-200 rounded-bl-none"
+                                        : "bg-white dark:bg-slate-800 text-primary dark:text-gray-100 border border-gray-200 dark:border-gray-700 rounded-bl-none"
                                         }`}
                                 >
                                     <p className="text-sm sm:text-base leading-relaxed whitespace-pre-wrap">
                                         {message.content}
                                     </p>
-                                    <span className={`text-xs mt-2 block ${message.sender === 'user' ? 'text-white/70' : 'text-gray-400'}`}>
+                                    <span className={`text-xs mt-2 block ${message.sender === 'user' ? 'text-white/70' : 'text-gray-400 dark:text-gray-500'}`}>
                                         {message.timestamp.toLocaleTimeString([], {
                                             hour: "2-digit",
                                             minute: "2-digit",
@@ -137,7 +137,7 @@ export default function Chat() {
 
                         {isLoading && (
                             <div className="flex justify-start">
-                                <div className="bg-white text-primary border border-gray-200 px-6 py-4 rounded-2xl rounded-bl-none shadow-sm">
+                                <div className="bg-white dark:bg-slate-800 text-primary border border-gray-200 dark:border-gray-700 px-6 py-4 rounded-2xl rounded-bl-none shadow-sm">
                                     <div className="flex gap-2 items-center">
                                         <div className="w-2 h-2 bg-primary rounded-full animate-bounce" />
                                         <div className="w-2 h-2 bg-primary rounded-full animate-bounce delay-100" />
@@ -152,7 +152,7 @@ export default function Chat() {
                 </div>
 
                 {/* Input Area */}
-                <div className="border-t border-gray-200 bg-white px-4 sm:px-6 lg:px-8 py-6">
+                <div className="border-t border-gray-200 dark:border-gray-800 bg-white dark:bg-slate-900 px-4 sm:px-6 lg:px-8 py-6 transition-colors duration-300">
                     <div className="max-w-3xl mx-auto">
                         <div className="flex gap-3 items-end">
                             {/* Text Input */}
@@ -166,7 +166,7 @@ export default function Chat() {
                                     }
                                 }}
                                 placeholder={language === 'kz' ? "Сұрағыңызды жазыңыз..." : "Опишите вашу проблему..."}
-                                className="flex-1 px-4 py-3 bg-gray-50 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent resize-none text-sm sm:text-base"
+                                className="flex-1 px-4 py-3 bg-gray-50 dark:bg-slate-800 border border-gray-300 dark:border-gray-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent resize-none text-sm sm:text-base text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 transition-colors"
                                 rows={1}
                                 style={{ minHeight: '50px', maxHeight: '150px' }}
                                 disabled={isLoading}
@@ -178,7 +178,7 @@ export default function Chat() {
                                 <button
                                     onClick={() => imageInputRef.current?.click()}
                                     disabled={isLoading}
-                                    className="p-3 sm:p-2 bg-gray-100 hover:bg-gray-200 text-primary rounded-lg transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center"
+                                    className="p-3 sm:p-2 bg-gray-100 dark:bg-slate-800 hover:bg-gray-200 dark:hover:bg-slate-700 text-primary rounded-lg transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center"
                                 >
                                     <ImageIcon className="w-5 h-5" />
                                 </button>
@@ -187,7 +187,7 @@ export default function Chat() {
                                 <button
                                     onClick={() => fileInputRef.current?.click()}
                                     disabled={isLoading}
-                                    className="p-3 sm:p-2 bg-gray-100 hover:bg-gray-200 text-primary rounded-lg transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center"
+                                    className="p-3 sm:p-2 bg-gray-100 dark:bg-slate-800 hover:bg-gray-200 dark:hover:bg-slate-700 text-primary rounded-lg transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center"
                                 >
                                     <Paperclip className="w-5 h-5" />
                                 </button>
@@ -222,7 +222,7 @@ export default function Chat() {
                         />
 
                         {/* Helper Text */}
-                        <p className="text-xs sm:text-sm text-gray-500 mt-3 text-center sm:text-left">
+                        <p className="text-xs sm:text-sm text-gray-500 dark:text-gray-400 mt-3 text-center sm:text-left">
                             {language === "kz"
                                 ? "Enter басып жіберу"
                                 : "Нажмите Enter для отправки"}

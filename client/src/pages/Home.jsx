@@ -61,7 +61,7 @@ const Home = () => {
     };
 
     return (
-        <div className="flex flex-col min-h-screen bg-white">
+        <div className="flex flex-col min-h-screen bg-white dark:bg-slate-900 transition-colors duration-300">
             {/* Hero Section */}
             <section className="pt-32 pb-20 lg:pt-40 lg:pb-32 px-4 sm:px-6 lg:px-8">
                 <div className="max-w-6xl mx-auto">
@@ -70,7 +70,7 @@ const Home = () => {
                             <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-primary mb-6 leading-tight">
                                 {content.hero.headline}
                             </h1>
-                            <p className="text-lg sm:text-xl text-gray-600 mb-8 leading-relaxed max-w-lg mx-auto lg:mx-0">
+                            <p className="text-lg sm:text-xl text-gray-600 dark:text-gray-300 mb-8 leading-relaxed max-w-lg mx-auto lg:mx-0">
                                 {content.hero.subheading}
                             </p>
                             <div className="flex flex-col sm:flex-row gap-4 w-full sm:w-auto justify-center lg:justify-start">
@@ -88,15 +88,15 @@ const Home = () => {
                         {/* Visual Element */}
                         <div className="order-1 lg:order-2 flex justify-center lg:justify-end mb-8 lg:mb-0">
                             <div className="relative w-full max-w-sm h-80 lg:h-96">
-                                <div className="absolute inset-0 bg-gradient-to-br from-primary/10 to-secondary/10 rounded-3xl blur-3xl animate-pulse" />
+                                <div className="absolute inset-0 bg-gradient-to-br from-primary/10 to-secondary/10 dark:from-primary/5 dark:to-secondary/5 rounded-3xl blur-3xl animate-pulse" />
                                 <div className="relative h-full flex items-center justify-center transform hover:scale-105 transition-transform duration-500">
-                                    <div className="p-8 bg-white rounded-3xl shadow-2xl border border-gray-100 w-64 h-64 flex flex-col items-center justify-center">
-                                        <Scale className="w-20 h-20 text-secondary mb-4" />
+                                    <div className="p-8 bg-white dark:bg-slate-800 rounded-3xl shadow-2xl border border-gray-100 dark:border-gray-700 w-64 h-64 flex flex-col items-center justify-center transition-colors duration-300">
+                                        <Scale className="w-20 h-20 text-secondary dark:text-white mb-4" />
                                         <div className="text-center">
                                             <div className="text-sm font-bold text-primary mb-1">
                                                 Adilet.zan.kz
                                             </div>
-                                            <div className="text-xs text-gray-500 font-medium">
+                                            <div className="text-xs text-gray-500 dark:text-gray-400 font-medium">
                                                 {t('hero.compliance')}
                                             </div>
                                         </div>
@@ -109,13 +109,13 @@ const Home = () => {
             </section>
 
             {/* Features Section */}
-            <section className="py-20 bg-gradient-to-b from-gray-50 to-white px-4 sm:px-6 lg:px-8">
+            <section className="py-20 bg-gradient-to-b from-gray-50 to-white dark:from-slate-900 dark:to-slate-950 px-4 sm:px-6 lg:px-8 transition-colors duration-300">
                 <div className="max-w-6xl mx-auto">
                     <div className="text-center mb-16">
                         <h2 className="text-3xl font-bold text-primary mb-4">
                             {content.features.title}
                         </h2>
-                        <p className="text-gray-600 max-w-2xl mx-auto text-lg">
+                        <p className="text-gray-600 dark:text-gray-300 max-w-2xl mx-auto text-lg">
                             ZanAI предоставляет все инструменты, необходимые для создания юридически безопасных документов
                         </p>
                     </div>
@@ -124,15 +124,15 @@ const Home = () => {
                         {content.features.items.map((feature, index) => (
                             <div
                                 key={index}
-                                className="bg-white rounded-2xl p-8 border border-gray-200 hover:border-secondary/30 hover:shadow-xl transition-all duration-300 group"
+                                className="bg-white dark:bg-slate-800 rounded-2xl p-8 border border-gray-200 dark:border-gray-700 hover:border-secondary/30 dark:hover:border-primary/30 hover:shadow-xl transition-all duration-300 group"
                             >
-                                <div className="w-14 h-14 bg-secondary/5 rounded-2xl flex items-center justify-center mb-6 group-hover:bg-secondary/10 transition-colors">
-                                    <feature.icon className="w-7 h-7 text-secondary group-hover:scale-110 transition-transform" />
+                                <div className="w-14 h-14 bg-secondary/5 dark:bg-slate-700 rounded-2xl flex items-center justify-center mb-6 group-hover:bg-secondary/10 dark:group-hover:bg-slate-600 transition-colors">
+                                    <feature.icon className="w-7 h-7 text-secondary dark:text-white group-hover:scale-110 transition-transform" />
                                 </div>
                                 <h3 className="text-xl font-bold text-primary mb-3">
                                     {feature.title}
                                 </h3>
-                                <p className="text-gray-600 leading-relaxed">
+                                <p className="text-gray-600 dark:text-gray-300 leading-relaxed">
                                     {feature.description}
                                 </p>
                             </div>
@@ -142,13 +142,13 @@ const Home = () => {
             </section>
 
             {/* Pricing Section */}
-            <section className="py-20 px-4 sm:px-6 lg:px-8">
+            <section className="py-20 px-4 sm:px-6 lg:px-8 bg-white dark:bg-slate-900 transition-colors duration-300">
                 <div className="max-w-6xl mx-auto">
                     <div className="text-center mb-16">
                         <h2 className="text-3xl font-bold text-primary mb-4">
                             {content.pricing.title}
                         </h2>
-                        <p className="text-gray-600 max-w-2xl mx-auto text-lg">
+                        <p className="text-gray-600 dark:text-gray-300 max-w-2xl mx-auto text-lg">
                             Выберите план, который подходит вашему бизнесу
                         </p>
                     </div>
@@ -158,13 +158,13 @@ const Home = () => {
                             <div
                                 key={index}
                                 className={`rounded-2xl p-8 border transition-all duration-300 flex flex-col relative ${plan.popular
-                                        ? "border-secondary bg-white shadow-2xl scale-105 md:scale-100 z-10"
-                                        : "border-gray-200 bg-white hover:border-gray-300 hover:shadow-lg"
+                                    ? "border-secondary dark:border-primary bg-white dark:bg-slate-800 shadow-2xl scale-105 md:scale-100 z-10"
+                                    : "border-gray-200 dark:border-gray-700 bg-white dark:bg-slate-800 hover:border-gray-300 dark:hover:border-gray-600 hover:shadow-lg"
                                     }`}
                             >
                                 {plan.popular && (
                                     <div className="absolute -top-4 left-1/2 transform -translate-x-1/2">
-                                        <span className="bg-secondary text-white px-4 py-1 rounded-full text-sm font-semibold shadow-md">
+                                        <span className="bg-secondary dark:bg-primary text-white px-4 py-1 rounded-full text-sm font-semibold shadow-md">
                                             {t('pricing.popular')}
                                         </span>
                                     </div>
@@ -173,7 +173,7 @@ const Home = () => {
                                 <h3 className="text-2xl font-bold text-primary mb-2">
                                     {plan.name}
                                 </h3>
-                                <p className="text-gray-600 text-sm mb-6 min-h-[40px]">{plan.description}</p>
+                                <p className="text-gray-600 dark:text-gray-300 text-sm mb-6 min-h-[40px]">{plan.description}</p>
 
                                 <div className="mb-8">
                                     <div className="flex items-baseline gap-1">
@@ -181,15 +181,15 @@ const Home = () => {
                                             {plan.price}
                                         </span>
                                         {plan.period && (
-                                            <span className="text-gray-600 ml-1 font-medium">{plan.period}</span>
+                                            <span className="text-gray-600 dark:text-gray-400 ml-1 font-medium">{plan.period}</span>
                                         )}
                                     </div>
                                 </div>
 
                                 <Button
                                     className={`w-full mb-8 rounded-lg py-6 text-base font-semibold shadow-md transition-transform active:scale-95 ${plan.popular
-                                            ? "bg-primary hover:bg-primary/90 text-white"
-                                            : "bg-gray-100 hover:bg-gray-200 text-primary"
+                                        ? "bg-primary hover:bg-primary/90 text-white"
+                                        : "bg-gray-100 dark:bg-slate-700 hover:bg-gray-200 dark:hover:bg-slate-600 text-primary dark:text-white"
                                         }`}
                                 >
                                     {t('pricing.select')}
@@ -198,9 +198,9 @@ const Home = () => {
                                 <ul className="space-y-4">
                                     {plan.features.map((feature, featureIndex) => (
                                         <li key={featureIndex} className="flex items-center gap-3">
-                                            <div className="w-5 h-5 rounded-full bg-green-100 flex items-center justify-center flex-shrink-0">
+                                            <div className="w-5 h-5 rounded-full bg-green-100 dark:bg-green-900/30 flex items-center justify-center flex-shrink-0">
                                                 <svg
-                                                    className="w-3 h-3 text-green-600"
+                                                    className="w-3 h-3 text-green-600 dark:text-green-400"
                                                     fill="currentColor"
                                                     viewBox="0 0 20 20"
                                                 >
@@ -211,7 +211,7 @@ const Home = () => {
                                                     />
                                                 </svg>
                                             </div>
-                                            <span className="text-gray-700 text-sm font-medium">{feature}</span>
+                                            <span className="text-gray-700 dark:text-gray-300 text-sm font-medium">{feature}</span>
                                         </li>
                                     ))}
                                 </ul>

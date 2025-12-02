@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { useLanguage } from '../context/LanguageContext';
+import { useAuth } from '../context/AuthContext';
 
 const Login = () => {
     const [isLogin, setIsLogin] = useState(true);
@@ -9,6 +10,7 @@ const Login = () => {
     const [error, setError] = useState('');
     const navigate = useNavigate();
     const { t } = useLanguage();
+    const { login } = useAuth();
 
     const handleChange = (e) => {
         setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -23,7 +25,7 @@ const Login = () => {
 
         try {
             const res = await axios.post(`${apiUrl}${endpoint}`, formData);
-            localStorage.setItem('token', res.data.token);
+            login(res.data.token);
             localStorage.setItem('user', JSON.stringify(res.data.user));
             navigate('/');
         } catch (err) {
@@ -32,57 +34,57 @@ const Login = () => {
     };
 
     return (
-        <div className="section" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', minHeight: '80vh' }}>
-            <div style={{ width: '100%', maxWidth: '400px', padding: '2rem', border: '1px solid var(--border-color)', borderRadius: '1rem' }}>
-                <h2 className="text-center mb-8">{isLogin ? t('auth.login') : t('auth.register')}</h2>
+        <div className="section bg-white dark:bg-slate-900 transition-colors duration-300" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', minHeight: '80vh' }}>
+            <div className="bg-white dark:bg-slate-800 border border-gray-200 dark:border-gray-700 rounded-2xl p-8 w-full max-w-md shadow-lg transition-colors duration-300">
+                <h2 className="text-center mb-8 text-2xl font-bold text-gray-900 dark:text-white">{isLogin ? t('auth.login') : t('auth.register')}</h2>
 
-                {error && <div style={{ color: 'red', marginBottom: '1rem', textAlign: 'center' }}>{error}</div>}
+                {error && <div className="text-red-500 mb-4 text-center text-sm">{error}</div>}
 
-                <form onSubmit={handleSubmit}>
+                <form onSubmit={handleSubmit} className="space-y-4">
                     {!isLogin && (
-                        <div className="mb-4">
-                            <label style={{ display: 'block', marginBottom: '0.5rem' }}>{t('auth.name')}</label>
+                        <div>
+                            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">{t('auth.name')}</label>
                             <input
                                 type="text"
                                 name="name"
                                 value={formData.name}
                                 onChange={handleChange}
-                                style={{ width: '100%', padding: '0.5rem', borderRadius: '0.25rem', border: '1px solid var(--border-color)' }}
+                                className="w-full px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-slate-700 text-gray-900 dark:text-white focus:ring-2 focus:ring-primary focus:border-transparent outline-none transition-colors"
                                 required
                             />
                         </div>
                     )}
-                    <div className="mb-4">
-                        <label style={{ display: 'block', marginBottom: '0.5rem' }}>{t('auth.email')}</label>
+                    <div>
+                        <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">{t('auth.email')}</label>
                         <input
                             type="email"
                             name="email"
                             value={formData.email}
                             onChange={handleChange}
-                            style={{ width: '100%', padding: '0.5rem', borderRadius: '0.25rem', border: '1px solid var(--border-color)' }}
+                            className="w-full px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-slate-700 text-gray-900 dark:text-white focus:ring-2 focus:ring-primary focus:border-transparent outline-none transition-colors"
                             required
                         />
                     </div>
-                    <div className="mb-8">
-                        <label style={{ display: 'block', marginBottom: '0.5rem' }}>{t('auth.password')}</label>
+                    <div>
+                        <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">{t('auth.password')}</label>
                         <input
                             type="password"
                             name="password"
                             value={formData.password}
                             onChange={handleChange}
-                            style={{ width: '100%', padding: '0.5rem', borderRadius: '0.25rem', border: '1px solid var(--border-color)' }}
+                            className="w-full px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-slate-700 text-gray-900 dark:text-white focus:ring-2 focus:ring-primary focus:border-transparent outline-none transition-colors"
                             required
                         />
                     </div>
-                    <button type="submit" className="btn btn-primary" style={{ width: '100%' }}>
+                    <button type="submit" className="w-full bg-primary hover:bg-primary/90 text-white font-semibold py-3 rounded-lg transition-colors mt-6">
                         {isLogin ? t('auth.signin') : t('auth.signup')}
                     </button>
                 </form>
 
-                <div className="text-center" style={{ marginTop: '1rem' }}>
+                <div className="text-center mt-6">
                     <button
                         onClick={() => setIsLogin(!isLogin)}
-                        style={{ background: 'none', border: 'none', color: 'var(--primary-color)', textDecoration: 'underline' }}
+                        className="text-primary hover:text-primary/80 text-sm font-medium hover:underline bg-transparent border-none cursor-pointer"
                     >
                         {isLogin ? t('auth.needAccount') : t('auth.haveAccount')}
                     </button>
