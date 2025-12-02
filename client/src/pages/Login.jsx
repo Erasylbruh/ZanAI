@@ -16,7 +16,8 @@ const Login = () => {
         e.preventDefault();
         setError('');
         const endpoint = isLogin ? '/api/auth/login' : '/api/auth/register';
-        const apiUrl = 'http://localhost:5000'; // TODO: Use env var
+        // Use environment variable for API URL, fallback to localhost for development
+        const apiUrl = import.meta.env.VITE_API_URL || 'http://localhost:5000';
 
         try {
             const res = await axios.post(`${apiUrl}${endpoint}`, formData);
