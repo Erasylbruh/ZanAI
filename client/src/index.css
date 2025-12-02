@@ -1,94 +1,12 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 :root {
   --primary-color: #D97706;
-  /* Amber/Gold */
-  --primary-hover: #B45309;
   --secondary-color: #1E293B;
-  /* Slate 800 */
-  --background-color: #FFFFFF;
-  --surface-color: #F8FAFC;
-  /* Slate 50 */
-  --text-color: #0F172A;
-  /* Slate 900 */
-  --text-muted: #64748B;
-  /* Slate 500 */
-  --border-color: #E2E8F0;
-  /* Slate 200 */
-  --radius: 0.5rem;
-  --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
-}
-
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
 }
 
 body {
-  font-family: var(--font-sans);
-  background-color: var(--background-color);
-  color: var(--text-color);
-  line-height: 1.5;
-}
-
-a {
-  text-decoration: none;
-  color: inherit;
-}
-
-button {
-  cursor: pointer;
-  font-family: inherit;
-}
-
-.container {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 1rem;
-}
-
-.btn {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  padding: 0.5rem 1rem;
-  border-radius: var(--radius);
-  font-weight: 500;
-  transition: all 0.2s;
-  border: none;
-}
-
-.btn-primary {
-  background-color: var(--secondary-color);
-  /* Dark button as in design */
-  color: white;
-}
-
-.btn-primary:hover {
-  opacity: 0.9;
-}
-
-.btn-outline {
-  border: 1px solid var(--border-color);
-  background: transparent;
-  color: var(--text-color);
-}
-
-.btn-outline:hover {
-  background-color: var(--surface-color);
-}
-
-.section {
-  padding: 4rem 0;
-}
-
-.text-center {
-  text-align: center;
-}
-
-.mb-4 {
-  margin-bottom: 1rem;
-}
-
-.mb-8 {
-  margin-bottom: 2rem;
+  @apply bg-white text-slate-900 font-sans;
 }

@@ -1,44 +1,140 @@
 import React from 'react';
+import { useLanguage } from '../context/LanguageContext';
+import { Button } from '../components/ui/button';
+import { Scale, FileText, Zap } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
 const Home = () => {
-    return (
-        <div className="home">
-            {/* Hero Section */}
-            <section className="hero section" style={{ textAlign: 'center', padding: '6rem 0' }}>
-                <div className="container">
-                    <h1 style={{ fontSize: '3rem', fontWeight: 'bold', marginBottom: '1rem' }}>
-                        Your AI Lawyer for <br /> Kazakhstan Law
-                    </h1>
-                    <p style={{ color: 'var(--text-muted)', fontSize: '1.125rem', marginBottom: '2rem', maxWidth: '600px', margin: '0 auto 2rem' }}>
-                        Create bilingual contracts (KZ/RU), compliant with Adilet.zan.kz instantly.
-                    </p>
-                    <button className="btn btn-primary" style={{ padding: '0.75rem 1.5rem', fontSize: '1rem' }}>
-                        Start for free
-                    </button>
+    const { t, language } = useLanguage();
 
-                    {/* Placeholder for Hero Image/Card */}
-                    <div style={{ marginTop: '4rem', padding: '2rem', background: 'white', boxShadow: '0 10px 25px -5px rgba(0, 0, 0, 0.1)', borderRadius: '1rem', display: 'inline-block' }}>
-                        <div style={{ color: 'var(--primary-color)', fontSize: '2rem', marginBottom: '0.5rem' }}>⚖️</div>
-                        <div style={{ fontWeight: 'bold' }}>Adilet.zan.kz</div>
-                        <div style={{ fontSize: '0.875rem', color: 'var(--text-muted)' }}>Compliance guaranteed</div>
+    // Content mapping based on language for dynamic rendering
+    // Note: In a real app, this structure might be in the translations file itself,
+    // but here we map it to match the structure of the provided Index.tsx
+    const content = {
+        hero: {
+            headline: t('hero.title'),
+            subheading: t('hero.subtitle'),
+            cta: t('hero.cta'),
+        },
+        features: {
+            title: t('features.why'),
+            items: [
+                { title: t('features.local.title'), description: t('features.local.desc'), icon: FileText },
+                { title: t('features.bilingual.title'), description: t('features.bilingual.desc'), icon: Zap },
+                { title: t('features.sme.title'), description: t('features.sme.desc'), icon: Scale },
+            ],
+        },
+        pricing: {
+            title: t('pricing.title'),
+            items: [
+                {
+                    name: t('pricing.start'),
+                    price: t('pricing.free'),
+                    description: t('pricing.free'), // Using same key for desc as placeholder
+                    features: [t('pricing.features.template'), t('pricing.features.basic')],
+                },
+                {
+                    name: t('pricing.pro'),
+                    price: '20,000 ₸',
+                    period: t('pricing.month'),
+                    description: t('pricing.features.auto'),
+                    features: [
+                        t('pricing.features.template'),
+                        t('pricing.features.auto'),
+                        t('pricing.features.bilingual'),
+                        t('pricing.features.dedicated'), // Added extra to match design count
+                    ],
+                    popular: true,
+                },
+                {
+                    name: t('pricing.enterprise'),
+                    price: t('pricing.onrequest'),
+                    description: t('pricing.features.api'),
+                    features: [
+                        t('pricing.features.api'),
+                        t('pricing.features.custom'),
+                        t('pricing.features.dedicated'),
+                    ],
+                },
+            ],
+        },
+    };
+
+    return (
+        <div className="flex flex-col min-h-screen bg-white">
+            {/* Hero Section */}
+            <section className="pt-32 pb-20 lg:pt-40 lg:pb-32 px-4 sm:px-6 lg:px-8">
+                <div className="max-w-6xl mx-auto">
+                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+                        <div className="flex flex-col justify-center order-2 lg:order-1 text-center lg:text-left">
+                            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-primary mb-6 leading-tight">
+                                {content.hero.headline}
+                            </h1>
+                            <p className="text-lg sm:text-xl text-gray-600 mb-8 leading-relaxed max-w-lg mx-auto lg:mx-0">
+                                {content.hero.subheading}
+                            </p>
+                            <div className="flex flex-col sm:flex-row gap-4 w-full sm:w-auto justify-center lg:justify-start">
+                                <Link to="/chat">
+                                    <Button
+                                        size="lg"
+                                        className="w-full sm:w-auto bg-primary hover:bg-primary/90 text-white rounded-lg px-8 py-6 text-base font-semibold shadow-lg hover:shadow-xl transition-all"
+                                    >
+                                        {content.hero.cta}
+                                    </Button>
+                                </Link>
+                            </div>
+                        </div>
+
+                        {/* Visual Element */}
+                        <div className="order-1 lg:order-2 flex justify-center lg:justify-end mb-8 lg:mb-0">
+                            <div className="relative w-full max-w-sm h-80 lg:h-96">
+                                <div className="absolute inset-0 bg-gradient-to-br from-primary/10 to-secondary/10 rounded-3xl blur-3xl animate-pulse" />
+                                <div className="relative h-full flex items-center justify-center transform hover:scale-105 transition-transform duration-500">
+                                    <div className="p-8 bg-white rounded-3xl shadow-2xl border border-gray-100 w-64 h-64 flex flex-col items-center justify-center">
+                                        <Scale className="w-20 h-20 text-secondary mb-4" />
+                                        <div className="text-center">
+                                            <div className="text-sm font-bold text-primary mb-1">
+                                                Adilet.zan.kz
+                                            </div>
+                                            <div className="text-xs text-gray-500 font-medium">
+                                                {t('hero.compliance')}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </section>
 
             {/* Features Section */}
-            <section className="features section" style={{ background: 'var(--surface-color)' }}>
-                <div className="container">
-                    <h2 className="text-center mb-8" style={{ fontSize: '2rem' }}>Why ZanAI?</h2>
-                    <div className="grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '2rem' }}>
-                        {[
-                            { title: 'Local Expert', desc: 'Trained specifically on RK legislation and court precedents.' },
-                            { title: 'Bilingual Engine', desc: 'Automatically creates documents in Kazakh and Russian languages.' },
-                            { title: 'SME Solution', desc: 'Affordable legal protection for business.' }
-                        ].map((feature, idx) => (
-                            <div key={idx} style={{ background: 'white', padding: '2rem', borderRadius: '1rem', border: '1px solid var(--border-color)' }}>
-                                <div style={{ color: 'var(--primary-color)', fontSize: '1.5rem', marginBottom: '1rem' }}>⚡</div>
-                                <h3 style={{ fontSize: '1.25rem', marginBottom: '0.5rem' }}>{feature.title}</h3>
-                                <p style={{ color: 'var(--text-muted)' }}>{feature.desc}</p>
+            <section className="py-20 bg-gradient-to-b from-gray-50 to-white px-4 sm:px-6 lg:px-8">
+                <div className="max-w-6xl mx-auto">
+                    <div className="text-center mb-16">
+                        <h2 className="text-3xl font-bold text-primary mb-4">
+                            {content.features.title}
+                        </h2>
+                        <p className="text-gray-600 max-w-2xl mx-auto text-lg">
+                            ZanAI предоставляет все инструменты, необходимые для создания юридически безопасных документов
+                        </p>
+                    </div>
+
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+                        {content.features.items.map((feature, index) => (
+                            <div
+                                key={index}
+                                className="bg-white rounded-2xl p-8 border border-gray-200 hover:border-secondary/30 hover:shadow-xl transition-all duration-300 group"
+                            >
+                                <div className="w-14 h-14 bg-secondary/5 rounded-2xl flex items-center justify-center mb-6 group-hover:bg-secondary/10 transition-colors">
+                                    <feature.icon className="w-7 h-7 text-secondary group-hover:scale-110 transition-transform" />
+                                </div>
+                                <h3 className="text-xl font-bold text-primary mb-3">
+                                    {feature.title}
+                                </h3>
+                                <p className="text-gray-600 leading-relaxed">
+                                    {feature.description}
+                                </p>
                             </div>
                         ))}
                     </div>
@@ -46,83 +142,84 @@ const Home = () => {
             </section>
 
             {/* Pricing Section */}
-            <section className="pricing section">
-                <div className="container">
-                    <h2 className="text-center mb-8" style={{ fontSize: '2rem' }}>Pricing</h2>
-                    <div className="grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '2rem' }}>
-                        {/* Free Plan */}
-                        <div style={{ padding: '2rem', borderRadius: '1rem', border: '1px solid var(--border-color)' }}>
-                            <h3 style={{ fontSize: '1.25rem' }}>Start</h3>
-                            <div style={{ fontSize: '2rem', fontWeight: 'bold', margin: '1rem 0' }}>Free</div>
-                            <button className="btn btn-outline" style={{ width: '100%', marginBottom: '1rem' }}>Select Plan</button>
-                            <ul style={{ listStyle: 'none', color: 'var(--text-muted)' }}>
-                                <li>✓ Template Library</li>
-                                <li>✓ Basic Support</li>
-                            </ul>
-                        </div>
+            <section className="py-20 px-4 sm:px-6 lg:px-8">
+                <div className="max-w-6xl mx-auto">
+                    <div className="text-center mb-16">
+                        <h2 className="text-3xl font-bold text-primary mb-4">
+                            {content.pricing.title}
+                        </h2>
+                        <p className="text-gray-600 max-w-2xl mx-auto text-lg">
+                            Выберите план, который подходит вашему бизнесу
+                        </p>
+                    </div>
 
-                        {/* Pro Plan */}
-                        <div style={{ padding: '2rem', borderRadius: '1rem', border: '2px solid var(--primary-color)', position: 'relative' }}>
-                            <div style={{ position: 'absolute', top: '-12px', left: '50%', transform: 'translateX(-50%)', background: 'var(--primary-color)', color: 'white', padding: '0.25rem 1rem', borderRadius: '1rem', fontSize: '0.75rem' }}>Popular Choice</div>
-                            <h3 style={{ fontSize: '1.25rem' }}>Pro</h3>
-                            <div style={{ fontSize: '2rem', fontWeight: 'bold', margin: '1rem 0' }}>20,000 ₸ <span style={{ fontSize: '1rem', fontWeight: 'normal' }}>/mo</span></div>
-                            <button className="btn btn-primary" style={{ width: '100%', marginBottom: '1rem' }}>Select Plan</button>
-                            <ul style={{ listStyle: 'none', color: 'var(--text-muted)' }}>
-                                <li>✓ Template Library</li>
-                                <li>✓ Automatic Creation</li>
-                                <li>✓ Bilingual Translation</li>
-                            </ul>
-                        </div>
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+                        {content.pricing.items.map((plan, index) => (
+                            <div
+                                key={index}
+                                className={`rounded-2xl p-8 border transition-all duration-300 flex flex-col relative ${plan.popular
+                                        ? "border-secondary bg-white shadow-2xl scale-105 md:scale-100 z-10"
+                                        : "border-gray-200 bg-white hover:border-gray-300 hover:shadow-lg"
+                                    }`}
+                            >
+                                {plan.popular && (
+                                    <div className="absolute -top-4 left-1/2 transform -translate-x-1/2">
+                                        <span className="bg-secondary text-white px-4 py-1 rounded-full text-sm font-semibold shadow-md">
+                                            {t('pricing.popular')}
+                                        </span>
+                                    </div>
+                                )}
 
-                        {/* Enterprise Plan */}
-                        <div style={{ padding: '2rem', borderRadius: '1rem', border: '1px solid var(--border-color)' }}>
-                            <h3 style={{ fontSize: '1.25rem' }}>Enterprise</h3>
-                            <div style={{ fontSize: '2rem', fontWeight: 'bold', margin: '1rem 0' }}>On Request</div>
-                            <button className="btn btn-outline" style={{ width: '100%', marginBottom: '1rem' }}>Select Plan</button>
-                            <ul style={{ listStyle: 'none', color: 'var(--text-muted)' }}>
-                                <li>✓ API Integration</li>
-                                <li>✓ Customization</li>
-                                <li>✓ Dedicated Support</li>
-                            </ul>
-                        </div>
+                                <h3 className="text-2xl font-bold text-primary mb-2">
+                                    {plan.name}
+                                </h3>
+                                <p className="text-gray-600 text-sm mb-6 min-h-[40px]">{plan.description}</p>
+
+                                <div className="mb-8">
+                                    <div className="flex items-baseline gap-1">
+                                        <span className="text-4xl font-bold text-primary">
+                                            {plan.price}
+                                        </span>
+                                        {plan.period && (
+                                            <span className="text-gray-600 ml-1 font-medium">{plan.period}</span>
+                                        )}
+                                    </div>
+                                </div>
+
+                                <Button
+                                    className={`w-full mb-8 rounded-lg py-6 text-base font-semibold shadow-md transition-transform active:scale-95 ${plan.popular
+                                            ? "bg-primary hover:bg-primary/90 text-white"
+                                            : "bg-gray-100 hover:bg-gray-200 text-primary"
+                                        }`}
+                                >
+                                    {t('pricing.select')}
+                                </Button>
+
+                                <ul className="space-y-4">
+                                    {plan.features.map((feature, featureIndex) => (
+                                        <li key={featureIndex} className="flex items-center gap-3">
+                                            <div className="w-5 h-5 rounded-full bg-green-100 flex items-center justify-center flex-shrink-0">
+                                                <svg
+                                                    className="w-3 h-3 text-green-600"
+                                                    fill="currentColor"
+                                                    viewBox="0 0 20 20"
+                                                >
+                                                    <path
+                                                        fillRule="evenodd"
+                                                        d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                                                        clipRule="evenodd"
+                                                    />
+                                                </svg>
+                                            </div>
+                                            <span className="text-gray-700 text-sm font-medium">{feature}</span>
+                                        </li>
+                                    ))}
+                                </ul>
+                            </div>
+                        ))}
                     </div>
                 </div>
             </section>
-
-            {/* Footer */}
-            <footer style={{ background: 'var(--secondary-color)', color: 'white', padding: '4rem 0' }}>
-                <div className="container">
-                    <div style={{ display: 'flex', justifyContent: 'space-between', flexWrap: 'wrap', gap: '2rem' }}>
-                        <div>
-                            <div style={{ fontSize: '1.5rem', fontWeight: 'bold', marginBottom: '1rem' }}>
-                                Zan<span style={{ color: 'var(--primary-color)' }}>AI</span>
-                            </div>
-                            <p style={{ color: '#94A3B8', maxWidth: '300px' }}>AI Lawyer for Kazakhstan Law</p>
-                        </div>
-                        <div style={{ display: 'flex', gap: '4rem' }}>
-                            <div>
-                                <h4 style={{ marginBottom: '1rem' }}>Product</h4>
-                                <ul style={{ listStyle: 'none', color: '#94A3B8' }}>
-                                    <li>Capabilities</li>
-                                    <li>Pricing</li>
-                                    <li>Reviews</li>
-                                </ul>
-                            </div>
-                            <div>
-                                <h4 style={{ marginBottom: '1rem' }}>Company</h4>
-                                <ul style={{ listStyle: 'none', color: '#94A3B8' }}>
-                                    <li>About Us</li>
-                                    <li>Blog</li>
-                                    <li>Careers</li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                    <div style={{ borderTop: '1px solid #334155', marginTop: '4rem', paddingTop: '2rem', color: '#94A3B8', fontSize: '0.875rem' }}>
-                        © 2025 ZanAI. All rights reserved.
-                    </div>
-                </div>
-            </footer>
         </div>
     );
 };

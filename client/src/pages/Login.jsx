@@ -1,12 +1,14 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import { useLanguage } from '../context/LanguageContext';
 
 const Login = () => {
     const [isLogin, setIsLogin] = useState(true);
     const [formData, setFormData] = useState({ email: '', password: '', name: '' });
     const [error, setError] = useState('');
     const navigate = useNavigate();
+    const { t } = useLanguage();
 
     const handleChange = (e) => {
         setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -32,14 +34,14 @@ const Login = () => {
     return (
         <div className="section" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', minHeight: '80vh' }}>
             <div style={{ width: '100%', maxWidth: '400px', padding: '2rem', border: '1px solid var(--border-color)', borderRadius: '1rem' }}>
-                <h2 className="text-center mb-8">{isLogin ? 'Login' : 'Register'}</h2>
+                <h2 className="text-center mb-8">{isLogin ? t('auth.login') : t('auth.register')}</h2>
 
                 {error && <div style={{ color: 'red', marginBottom: '1rem', textAlign: 'center' }}>{error}</div>}
 
                 <form onSubmit={handleSubmit}>
                     {!isLogin && (
                         <div className="mb-4">
-                            <label style={{ display: 'block', marginBottom: '0.5rem' }}>Name</label>
+                            <label style={{ display: 'block', marginBottom: '0.5rem' }}>{t('auth.name')}</label>
                             <input
                                 type="text"
                                 name="name"
@@ -51,7 +53,7 @@ const Login = () => {
                         </div>
                     )}
                     <div className="mb-4">
-                        <label style={{ display: 'block', marginBottom: '0.5rem' }}>Email</label>
+                        <label style={{ display: 'block', marginBottom: '0.5rem' }}>{t('auth.email')}</label>
                         <input
                             type="email"
                             name="email"
@@ -62,7 +64,7 @@ const Login = () => {
                         />
                     </div>
                     <div className="mb-8">
-                        <label style={{ display: 'block', marginBottom: '0.5rem' }}>Password</label>
+                        <label style={{ display: 'block', marginBottom: '0.5rem' }}>{t('auth.password')}</label>
                         <input
                             type="password"
                             name="password"
@@ -73,7 +75,7 @@ const Login = () => {
                         />
                     </div>
                     <button type="submit" className="btn btn-primary" style={{ width: '100%' }}>
-                        {isLogin ? 'Sign In' : 'Sign Up'}
+                        {isLogin ? t('auth.signin') : t('auth.signup')}
                     </button>
                 </form>
 
@@ -82,7 +84,7 @@ const Login = () => {
                         onClick={() => setIsLogin(!isLogin)}
                         style={{ background: 'none', border: 'none', color: 'var(--primary-color)', textDecoration: 'underline' }}
                     >
-                        {isLogin ? 'Need an account? Register' : 'Already have an account? Login'}
+                        {isLogin ? t('auth.needAccount') : t('auth.haveAccount')}
                     </button>
                 </div>
             </div>
