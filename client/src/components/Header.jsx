@@ -2,12 +2,14 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { useLanguage } from '../context/LanguageContext';
 import { useTheme } from '../context/ThemeContext';
+import { useAuth } from '../context/AuthContext';
 import { Button } from './ui/button';
-import { Moon, Sun } from 'lucide-react';
+import { Moon, Sun, LayoutDashboard } from 'lucide-react';
 
 const Header = () => {
     const { t, language, setLanguage } = useLanguage();
     const { theme, toggleTheme } = useTheme();
+    const { isAuthenticated } = useAuth();
 
     return (
         <header className="fixed top-0 left-0 right-0 z-50 bg-white/80 dark:bg-slate-900/80 backdrop-blur-md border-b border-gray-100 dark:border-gray-800 transition-colors duration-300">
@@ -60,12 +62,21 @@ const Header = () => {
                             ))}
                         </div>
 
-                        {/* Login Button */}
-                        <Link to="/login">
-                            <Button variant="default" size="sm" className="hidden sm:inline-flex">
-                                {t('nav.login')}
-                            </Button>
-                        </Link>
+                        {/* Auth Button */}
+                        {isAuthenticated ? (
+                            <Link to="/dashboard">
+                                <Button variant="default" size="sm" className="hidden sm:inline-flex gap-2">
+                                    <LayoutDashboard size={16} />
+                                    Dashboard
+                                </Button>
+                            </Link>
+                        ) : (
+                            <Link to="/login">
+                                <Button variant="default" size="sm" className="hidden sm:inline-flex">
+                                    {t('nav.login')}
+                                </Button>
+                            </Link>
+                        )}
                     </div>
                 </div>
             </div>

@@ -5,6 +5,7 @@ import Footer from './components/Footer';
 import Home from './pages/Home';
 import Login from './pages/Login';
 import Chat from './pages/Chat';
+import Dashboard from './pages/Dashboard';
 import NotFound from './pages/NotFound';
 import './index.css';
 
@@ -24,6 +25,7 @@ const Layout = () => {
           <Route path="/" element={<Home />} />
           <Route path="/login" element={<Login />} />
           <Route path="/chat" element={<Chat />} />
+          <Route path="/dashboard" element={<Dashboard />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </main>
